@@ -1,7 +1,7 @@
 # react enginerring train
 
 ## TODO LIST
-- eslint
+- use [Tachyons](https://tachyons.io/)
 - css loader
 - formik
 - react-infinite-scroller

@@ -1,53 +1,44 @@
-import React, {  } from 'react'
+import React, { useState, useCallback } from 'react'
+import PropTypes from 'prop-types'
 
-// const Nav = (props) => {
-//   const { onTypeChange } = props;
-//   const [active, setActive] = useState(0);
-//   const [typeArr, setTypeArr] = useState([
-//     "All",
-//     "JavaScript",
-//     "Ruby",
-//     "Java",
-//     "CSS",
-//     "Python",
-//   ]);
-//   const activeStyle = {
-//     color: "#c04539",
-//     margin: "0 10px",
-//     fontSize: "24px",
-//     cursor: "pointer",
-//   };
-//   const commonStyle = {
-//     margin: "0 10px",
-//     fontSize: "24px",
-//     cursor: "pointer",
-//   };
-//   const handleClick = (index) => {
-//     setActive(index);
-//     onTypeChange(typeArr[index]);
-//   };
-//   return (
-//     <div>
-//       <div style={{ width: "100%", textAlign: "center", margin: "20px 0" }}>
-//         {typeArr.map((item, index) => {
-//           return (
-//             <span
-//               style={index === active ? activeStyle : commonStyle}
-//               onClick={() => handleClick(index)}
-//               key={item}
-//             >
-//               {item}
-//             </span>
-//           );
-//         })}
-//       </div>
-//     </div>
-//   );
-// };
+const LANGUAGES = [
+  'All',
+  'JavaScript',
+  'Ruby',
+  'Java',
+  'CSS',
+  'Python',
+]
 
-export default function () {
+export default function Header({ onChange }) {
+  const [active, setActive] = useState(0)
+
+  const handleClick = useCallback(index => {
+    setActive(index)
+    onChange(LANGUAGES[index])
+  })
+
   return (
-    <div>123456</div>
+    <div>
+      <div className="w-100 tc mv3" >
+        {LANGUAGES.map((item, index) => {
+          let className = 'pointer dim f3 mh3'
+          index === active && (className += ' red')
+          return (
+            <span
+              className={className}
+              onClick={() => handleClick(index)}
+              key={item}
+            >
+              {item}
+            </span>
+          )
+        })}
+      </div>
+    </div>
   )
 }
 
+Header.propTypes = {
+  onChange: PropTypes.func.isRequired
+}
