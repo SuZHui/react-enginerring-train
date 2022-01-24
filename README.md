@@ -2,6 +2,6 @@
 
 ## TODO LIST
 - use [Tachyons](https://tachyons.io/)
-- css loader
+- 参考 https://pheye.github.io/react-train/#/battle
 - formik
 - react-infinite-scroller

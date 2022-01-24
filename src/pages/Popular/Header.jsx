@@ -13,10 +13,10 @@ const LANGUAGES = [
 export default function Header({ onChange }) {
   const [active, setActive] = useState(0)
 
-  const handleClick = useCallback(index => {
+  const handleClick = index => {
     setActive(index)
     onChange(LANGUAGES[index])
-  })
+  }
 
   return (
     <div>

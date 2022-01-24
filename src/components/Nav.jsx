@@ -1,11 +1,12 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 export default function Nav () {
+  const defaultClass = 'fw6 no-underline near-black ph2 dim'
   return (
-    <nav>
-      <Link to="/">Popular</Link>
-      <Link to="/battle">Battle</Link>
+    <nav className="pa3">
+      <NavLink to="/" className={({ isActive }) => isActive ? `${defaultClass} dark-red` : defaultClass }>Popular</NavLink>
+      <NavLink to="/battle" className={({ isActive }) => isActive ? `${defaultClass} dark-red` : defaultClass }>Battle</NavLink>
     </nav>
   )
 }
