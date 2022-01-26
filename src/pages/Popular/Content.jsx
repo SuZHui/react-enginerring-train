@@ -1,17 +1,31 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { Row, Col } from 'antd'
 import Card from './Card'
 
 
 export default function Content ({ list }) {
   return (
-    <div className="flex items-center justify-around flex-wrap" style={{ padding: '0 20%' }}>
+    <Row
+      className="flex items-center justify-around"
+      wrap
+    >
       {
         list.map((li, i) => {
-          return <Card key={li.id + li.name} {...li} index={i + 1} />
+          return (
+            <Col
+              key={li.id + li.name + i}
+              lg={6}
+              md={8}
+              sm={12}
+              xs={24}
+            >
+              <Card  {...li} index={i + 1} />
+            </Col>
+          )
         })
       }
-    </div>
+    </Row>
   )
 }
 

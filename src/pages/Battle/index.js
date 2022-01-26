@@ -1,32 +1,29 @@
 import React from 'react'
+import Instructions from './Instructions'
 
 export default function Battle () {
   return (
     <div>
+      <Instructions />
       <div>
-        <h2>Instructions</h2>
-        <div>
-          <div>
-            <p>Enter Two Github</p>
+        <h2 className="tc">Players</h2>
+        <div className="flex justify-between">
+          <div className="flex-auto ph4">
+            <h2>Player One</h2>
             <div>
-
+              <input />
+              <button type="button">Submit</button>
             </div>
           </div>
-          <div>
-            <p>Battle</p>
+          <div className="flex-auto ph4">
+            <h2>Player Two</h2>
             <div>
-              
-            </div>
-          </div>
-          <div>
-            <p>See The Winner</p>
-            <div>
-              
+              <input />
+              <button type="button">Submit</button>
             </div>
           </div>
         </div>
       </div>
-      battle
     </div>
   )
 }

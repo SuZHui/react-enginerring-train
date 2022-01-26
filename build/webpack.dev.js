@@ -13,6 +13,9 @@ module.exports = {
   devtool: 'eval-cheap-module-source-map',
   devServer: {
     hot: true,
+    client: {
+      logging: 'error'
+    },
     static: {
       directory: './docs',
       publicPath: projectUrlPath
@@ -23,6 +26,7 @@ module.exports = {
   context,
   entry: './src/index.js',
   output: {
+    clean: true,
     filename: 'js/bundle.js',
     path: resolve('docs'),
     publicPath: projectUrlPath + '/'
@@ -33,7 +37,7 @@ module.exports = {
     }),
     new ESLintPlugin({
       fix: true,
-      exclude: ['build']
+      exclude: ['build', 'node_modules']
     })
   ],
   resolve: {

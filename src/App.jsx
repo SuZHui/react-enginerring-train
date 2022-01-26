@@ -1,5 +1,5 @@
 import React from 'react'
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, useRoutes } from 'react-router-dom'
 import Nav from '@/components/Nav'
 
 const Popular = React.lazy(() => import(/* webpackChunkName: 'Popular' */'@/pages/Popular'))
@@ -7,10 +7,41 @@ const Battle = React.lazy(() => import(/* webpackChunkName: 'Battle' */'@/pages/
 const NoFound = React.lazy(() => import(/* webpackChunkName: 'NoFound' */'@/pages/NoFound'))
 
 export default function App () {
+  const fallbackElememt = <>...</>
+  const routes = [
+    {
+      path: '/',
+      element: (
+        <React.Suspense fallback={fallbackElememt}>
+          <Popular />
+        </React.Suspense>
+      )
+    },
+    {
+      path: '/battle',
+      element: (
+        <React.Suspense fallback={fallbackElememt}>
+          <Battle />
+        </React.Suspense>
+      )
+    },
+    {
+      path: '*',
+      element: (
+        <React.Suspense fallback={fallbackElememt}>
+          <NoFound />
+        </React.Suspense>
+      )
+    }
+  ]
+
+  const element = useRoutes(routes)
+
   return (
-    <div>
+    <>
       <Nav />
-      <Routes>
+      { element }
+      {/* <Routes>
         <Route path="/" element={
           <React.Suspense fallback={<>...</>}>
             <Popular />
@@ -26,7 +57,7 @@ export default function App () {
             <NoFound />
           </React.Suspense>
         } />
-      </Routes>
-    </div>
+      </Routes> */}
+    </>
   )
 }

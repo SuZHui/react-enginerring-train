@@ -1,4 +1,5 @@
-import React, { useState, useCallback } from 'react'
+import React from 'react'
+import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
 const LANGUAGES = [
@@ -10,28 +11,21 @@ const LANGUAGES = [
   'Python',
 ]
 
-export default function Header({ onChange }) {
-  const [active, setActive] = useState(0)
-
-  const handleClick = index => {
-    setActive(index)
-    onChange(LANGUAGES[index])
-  }
-
+export default function Header({ type }) {
   return (
     <div>
-      <div className="w-100 tc mv3" >
-        {LANGUAGES.map((item, index) => {
-          let className = 'pointer dim f3 mh3'
-          index === active && (className += ' red')
+      <div className="w-100 tc mb4" >
+        {LANGUAGES.map(item => {
+          let className = 'pointer dim f5 mh2 fw6'
+          type === item && (className += ' red')
           return (
-            <span
+            <Link
               className={className}
-              onClick={() => handleClick(index)}
               key={item}
+              to={`/?type=${item}`}
             >
               {item}
-            </span>
+            </Link>
           )
         })}
       </div>
@@ -40,5 +34,5 @@ export default function Header({ onChange }) {
 }
 
 Header.propTypes = {
-  onChange: PropTypes.func.isRequired
+  type: PropTypes.string.isRequired
 }
