@@ -12,12 +12,12 @@ export default function Popular () {
   const { list, isLoading, isError, loadMore, reload } = usePopular(type)
 
   return (
-    <div id="scrollable" className="popular mt5 flex flex-column flex-auto overflow-y-auto">
-      <div className="popular-wrapper">
-        <Header type={type} />
+    <div className="popular pt5 flex flex-column">
+      <Header type={type} />
+      <div id="scrollable" className="flex-auto overflow-y-auto">
         <InfiniteScroll
           dataLength={list.length}
-          hasMore={list.length < 50}
+          hasMore={list.length < 90}
           next={loadMore}
           loader={
             <div className="tc mv4">

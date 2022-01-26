@@ -22,32 +22,15 @@ client.interceptors.response.use(res => res.data, err => {
 })
 
 export default {
-  getList (type, page = 1) {
-    const CancelToken = Axios.CancelToken
-    const source = CancelToken.source()
-    return {
-      cancel: () => source.cancel(),
-      run: () => {
-        type = type.toLowerCase() !== 'all' ? `+language:${type}` : ''
-        return client.get(
-          `https://api.github.com/search/repositories?q=stars:%3E1${type}&sort=stars&order=desc&type=Repositories&per_page=10&page=${page}`,
-          {
-            cancelToken: source.token
-          }
-        )
-      }
-    }
-  },
-
-  getList2 (type) {
+  getList (type) {
     const fetcher = url => client.get(url)
     type = type.toLowerCase() !== 'all' ? `+language:${type}` : ''
     const getKey = index => {
-      return `https://api.github.com/search/repositories?q=stars:%3E1${type}&sort=stars&order=desc&type=Repositories&per_page=10&page=${index + 1}`
+      return `https://api.github.com/search/repositories?q=stars:%3E1${type}&sort=stars&order=desc&type=Repositories&per_page=30&page=${index + 1}`
     }
     return useSWRInfinite(getKey, fetcher, { shouldRetryOnError: false, revalidateFirstPage: false })
   },
-  getItem () {
-    return Promise.resolve({})
+  getUser (name) {
+    return client.get(`https://api.github.com/users/${name}`)
   }
 }

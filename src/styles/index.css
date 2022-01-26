@@ -25,7 +25,13 @@ html, body {
   flex-direction: column;
 }
 .popular {
-  
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+.battle {
+  overflow-y: auto;
 }
 
 .popular-wrapper {

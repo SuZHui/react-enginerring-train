@@ -7,7 +7,7 @@ import Card from './Card'
 export default function Content ({ list }) {
   return (
     <Row
-      className="flex items-center justify-around"
+      className="flex items-center justify-around pv3"
       wrap
     >
       {
