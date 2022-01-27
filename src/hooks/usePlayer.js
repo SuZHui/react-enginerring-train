@@ -6,7 +6,11 @@ export default function usePlayer (name) {
   const [player, setPlayer] = useState(null)
   const [isLoading, setLoading] = useState(true)
   useEffect(() => {
-    if (!name) return
+    if (!name) {
+      setLoading(false)
+      setPlayer(null)
+      return 
+    }
     setLoading(true)
     const instance = API.getUser(name)
       .then(res => {
@@ -31,5 +35,17 @@ export default function usePlayer (name) {
     player,
     isLoading,
     isError: !player && !isLoading
+  }
+}
+
+export function usePlayer2 () {
+  const name = useRef(null)
+  const { data, error, mutate } = API.getUser2(name.current)
+  console.log(data, error, name)
+  return {
+    player: data,
+    isLoading: !data && !error,
+    isError: !!error,
+    setName: n => name.current = n
   }
 }

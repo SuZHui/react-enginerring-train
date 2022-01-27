@@ -1,6 +1,7 @@
 import Axios from 'axios'
 import { Modal } from 'antd'
 import useSWRInfinite from 'swr/infinite'
+import useSWR from 'swr'
 
 let modal
 
@@ -41,5 +42,10 @@ export default {
   },
   getUser (name) {
     return client.get(`https://api.github.com/users/${name}`)
+  },
+  getUser2 (name) {
+    const key = name ? `https://api.github.com/users/${name}` : null
+    const fetcher = url => client.get(url)
+    return useSWR(key, fetcher, { shouldRetryOnError: false })
   }
 }

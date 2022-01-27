@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react'
 import { useSearchParams, useNavigate } from 'react-router-dom'
 import { Row, Col, Button } from 'antd'
-import usePlayer from '@/hooks/usePlayer'
+import usePlayer, { usePlayer2 } from '@/hooks/usePlayer'
 import Card from './Card'
 import ErrorWrapper from './ErrorWrapper'
 
@@ -10,6 +10,10 @@ export default function Result () {
   const [search] = useSearchParams()
   const p1 = usePlayer(search.get('p1'))
   const p2 = usePlayer(search.get('p2'))
+  const res = usePlayer2()
+
+  res.setName(search.get('p1'))
+
   const [p1State, p2State] = useMemo(() => {
     let _p1, _p2
     if (!p1.player || !p2.player) {

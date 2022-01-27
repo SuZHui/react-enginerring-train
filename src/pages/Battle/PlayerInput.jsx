@@ -1,14 +1,19 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import PropTypes from 'prop-types'
 import { Input, Button, Image, Spin } from 'antd'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTimesCircle } from '@fortawesome/free-solid-svg-icons'
 import { useFormik } from 'formik'
 import API from '@/api'
+import usePlayer from '@/hooks/usePlayer'
 
 const usePlayerInput = () => {
   const [isLoading, setLoading] = useState(false)
   const [player, setPlayer] = useState(null)
+  const listener = useRef({
+    error: null
+  })
+  
 
   const fetch = name => {
     setLoading(true)
@@ -19,6 +24,9 @@ const usePlayerInput = () => {
       .catch(err => {
         console.error(err)
         setPlayer(null)
+        if (listener.current.error) {
+          listener.current.error(err)
+        }
       })
       .finally(() => {
         setLoading(false)
@@ -29,12 +37,20 @@ const usePlayerInput = () => {
     player,
     isLoading,
     submit: fetch,
+    onError: cb => listener.current.error = cb,
     clearPlayer: () => setPlayer(null)
   }
 }
 
 export default function PlayerInput ({ onChange }) {
-  const { player, isLoading, submit, clearPlayer }  = usePlayerInput()
+  const { player, isLoading, submit, clearPlayer, onError }  = usePlayerInput()
+  const handleClear = () => {
+    clearPlayer()
+    formik.setValues({ name: '' })
+    onChange(null)
+  }
+
+  onError(handleClear)
 
   const formik = useFormik({
     initialValues: {
@@ -47,12 +63,6 @@ export default function PlayerInput ({ onChange }) {
     }
   })
 
-  const handleClear = () => {
-    clearPlayer()
-    formik.setValues({ name: '' })
-    onChange(null)
-  }
-
   const style = {
     width: 'calc(100% - 86px)',
     maxWidth: 246
@@ -60,7 +70,7 @@ export default function PlayerInput ({ onChange }) {
   return player
       ? (
         <div
-        className="br3 bg-light-gray flex items-center justify-between pa2"
+          className="br3 bg-light-gray flex items-center justify-between pa2"
         >
           <div
             className="flex items-center"
@@ -78,7 +88,8 @@ export default function PlayerInput ({ onChange }) {
               }/>
             <span className="ml2 fw6 f3 blue">{ player.login }</span>
           </div>
-          <div className="pointer"
+          <div
+            className="pointer"
             onClick={handleClear}
           >
             <FontAwesomeIcon icon={faTimesCircle} color="red" size="2x" />
