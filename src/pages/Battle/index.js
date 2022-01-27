@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, createSearchParams } from 'react-router-dom'
 import { Row, Col, Button } from 'antd'
 import Instructions from './Instructions'
 import PlayerInput from './PlayerInput'
@@ -13,9 +13,15 @@ export default function Battle () {
 
   const setP1 = p => setModel({ ...model, p1: p })
   const setP2 = p => setModel({ ...model, p2: p })
-  // TODO: 跳转至结果页
+  // 跳转至结果页
   const handleBattle = () => {
-    navigate(`/result?p1=${model.p1}&p2=${model.p2}`)
+    navigate({
+      pathname: '/result',
+      search: `?${createSearchParams({
+        p1: model.p1,
+        p2: model.p2
+      })}`
+    })
   }
 
   return (

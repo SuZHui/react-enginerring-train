@@ -1,9 +1,10 @@
 import React from 'react'
-import { Routes, Route, useRoutes } from 'react-router-dom'
+import { useRoutes } from 'react-router-dom'
 import Nav from '@/components/Nav'
 
 const Popular = React.lazy(() => import(/* webpackChunkName: 'Popular' */'@/pages/Popular'))
 const Battle = React.lazy(() => import(/* webpackChunkName: 'Battle' */'@/pages/Battle'))
+const Result = React.lazy(() => import(/* webpackChunkName: 'Result' */'@/pages/Result'))
 const NoFound = React.lazy(() => import(/* webpackChunkName: 'NoFound' */'@/pages/NoFound'))
 
 export default function App () {
@@ -22,6 +23,14 @@ export default function App () {
       element: (
         <React.Suspense fallback={fallbackElememt}>
           <Battle />
+        </React.Suspense>
+      )
+    },
+    {
+      path: '/result',
+      element: (
+        <React.Suspense fallback={fallbackElememt}>
+          <Result />
         </React.Suspense>
       )
     },

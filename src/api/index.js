@@ -11,9 +11,18 @@ client.interceptors.response.use(res => res.data, err => {
   } else {
     // 系统级错误 弹窗提示
     if (!modal) {
+      const message = (() => {
+        let t = 'Request failed'
+        if (err.response && err.response.data) {
+          t = err.response.data.message || t
+        } else if (err.message) {
+          t = err.message
+        }
+        return t
+      })()
       modal = Modal.error({
         title: 'Error',
-        content: err.message || 'Request failed',
+        content: message,
         afterClose: () => modal = null
       })
     }
