@@ -6,7 +6,7 @@ import Footer from '@/components/Footer'
 const Popular = React.lazy(() => import(/* webpackChunkName: 'Popular' */'@/pages/Popular'))
 const Battle = React.lazy(() => import(/* webpackChunkName: 'Battle' */'@/pages/Battle'))
 const Result = React.lazy(() => import(/* webpackChunkName: 'Result' */'@/pages/Result'))
-const NoFound = React.lazy(() => import(/* webpackChunkName: 'NoFound' */'@/pages/NoFound'));
+const NoFound = React.lazy(() => import(/* webpackChunkName: 'NoFound' */'@/pages/NoFound'))
 
 export default function App () {
   const fallbackElememt = <>...</>
