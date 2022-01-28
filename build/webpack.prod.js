@@ -1,18 +1,17 @@
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
-const TerserPlugin = require('terser-webpack-plugin')
-const { getConfig } = require('./webpack.common')
-const { merge } = require('webpack-merge')
-
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+const TerserPlugin = require("terser-webpack-plugin");
+const { getConfig } = require("./webpack.common");
+const { merge } = require("webpack-merge");
 
 module.exports = merge(getConfig(true), {
-  mode: 'production',
-  devtool: 'source-map',
+  mode: "production",
+  devtool: "source-map",
   plugins: [
     new MiniCssExtractPlugin({
-      filename: 'css/[name].[contenthash:8].css',
-      chunkFilename: 'css/[name].[contenthash:8].css'
-    })
+      filename: "css/[name].[contenthash:8].css",
+      chunkFilename: "css/[name].[contenthash:8].css",
+    }),
   ],
   optimization: {
     minimize: true,
@@ -20,31 +19,31 @@ module.exports = merge(getConfig(true), {
       new CssMinimizerPlugin(),
       new TerserPlugin({
         parallel: true,
-        extractComments: false
-      })
+        extractComments: false,
+      }),
     ],
     splitChunks: {
       cacheGroups: {
         react: {
           test: /[\\/]node_modules[\\/](react|react-dom|prop-types|react-router-dom)[\\/]/,
-          name: 'vendor-react',
+          name: "vendor-react",
           priority: 20,
-          chunks: 'all',
+          chunks: "all",
         },
         antd: {
           test: /[\\/]node_modules[\\/](antd)[\\/]/,
-          name: 'vendor-antd',
+          name: "vendor-antd",
           priority: 10,
-          chunks: 'all',
+          chunks: "all",
         },
         vendors: {
           test: /[\\/]node_modules[\\/]/,
-          name: 'vendors',
+          name: "vendors",
           priority: 1,
-          chunks: 'all',
+          chunks: "all",
           reuseExistingChunk: true,
-        }
-      }
-    }
-  }
-})
+        },
+      },
+    },
+  },
+});

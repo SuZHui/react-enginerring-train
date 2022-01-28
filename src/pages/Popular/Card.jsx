@@ -1,17 +1,17 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { Image, Spin } from 'antd'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import React from "react";
+import PropTypes from "prop-types";
+import { Image, Spin } from "antd";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faUser,
   faStar,
   faCodeBranch,
   faExclamationTriangle,
-} from '@fortawesome/free-solid-svg-icons'
+} from "@fortawesome/free-solid-svg-icons";
 
 export default function Card(props) {
   const { index, owner, open_issues_count, stargazers_count, forks, html_url } =
-    props
+    props;
   return (
     <a
       href={html_url}
@@ -58,7 +58,7 @@ export default function Card(props) {
         </div>
       </div>
     </a>
-  )
+  );
 }
 
 Card.propTypes = {
@@ -68,4 +68,4 @@ Card.propTypes = {
   stargazers_count: PropTypes.number.isRequired,
   forks: PropTypes.number.isRequired,
   html_url: PropTypes.string.isRequired,
-}
+};

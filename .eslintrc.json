@@ -11,10 +11,7 @@
   },
   "ignorePatterns": ["build/*", "node_modules/*"],
   "parser": "@babel/eslint-parser",
-  "extends": [
-    "airbnb",
-    "prettier"
-  ],
+  "extends": ["airbnb", "prettier"],
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true,
@@ -22,11 +19,11 @@
     }
   },
   "rules": {
-    "semi": [2, "never"],
-    "quotes": [2, "single"],
-    "eol-last": [2, "always"],
+    // "semi": [2, "never"],
+    // "quotes": [2, "single"],
+    // "eol-last": [2, "always"],
     "react/jsx-props-no-spreading": 0,
-    "import/extensions": 2,
+    "import/extensions": "off",
     "import/no-unresolved": [
       2,
       {

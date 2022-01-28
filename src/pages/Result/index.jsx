@@ -1,55 +1,42 @@
-import React, { useMemo } from 'react'
-import { useSearchParams, useNavigate } from 'react-router-dom'
-import { Row, Col, Button } from 'antd'
-import usePlayer from '@/hooks/usePlayer'
-import Card from './Card'
-import ErrorWrapper from './ErrorWrapper'
+import React, { useMemo } from "react";
+import { useSearchParams, useNavigate } from "react-router-dom";
+import { Row, Col, Button } from "antd";
+import usePlayer from "@/hooks/usePlayer";
+import Card from "./Card";
+import ErrorWrapper from "./ErrorWrapper";
 
-export default function Result () {
-  const [search] = useSearchParams()
-  const p1 = usePlayer(search.get('p1'))
-  const p2 = usePlayer(search.get('p2'))
+export default function Result() {
+  const [search] = useSearchParams();
+  const p1 = usePlayer(search.get("p1"));
+  const p2 = usePlayer(search.get("p2"));
   const [p1State, p2State] = useMemo(() => {
     if (!p1.player || !p2.player) {
-      return [null, null]
+      return [null, null];
     }
-    const max = Math.max(p1.player.public_repos, p2.player.public_repos)
-    const arr = [p1.player.public_repos, p2.player.public_repos]
-    if (arr.every(p => p === max)) {
+    const max = Math.max(p1.player.public_repos, p2.player.public_repos);
+    const arr = [p1.player.public_repos, p2.player.public_repos];
+    if (arr.every((p) => p === max)) {
       // 平局
-      return [Card.STATUS.TIE, Card.STATUS.TIE]
-    } 
-      // 胜负
-      return arr.map(p => p === max
-          ? Card.STATUS.WIN
-          : Card.STATUS.LOSE)
-    
-  }, [p1, p2])
+      return [Card.STATUS.TIE, Card.STATUS.TIE];
+    }
+    // 胜负
+    return arr.map((p) => (p === max ? Card.STATUS.WIN : Card.STATUS.LOSE));
+  }, [p1, p2]);
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const handleReset = () => {
-    navigate('/battle')
-  }
-  
+    navigate("/battle");
+  };
+
   return (
     <div className="result pt5 overflow-y-auto">
-      <Row
-        className="mt4"
-        justify='center'
-      >
-        <Col
-          xs={18}
-          sm={10}
-          md={8}
-          lg={6}
-          xl={6}
-          xxl={4}
-        >
-          {
-            p1.isError || p1.isLoading
-              ? <ErrorWrapper isLoading={p1.isLoading} />
-              : <Card status={p1State} {...p1.player} />
-          }
+      <Row className="mt4" justify="center">
+        <Col xs={18} sm={10} md={8} lg={6} xl={6} xxl={4}>
+          {p1.isError || p1.isLoading ? (
+            <ErrorWrapper isLoading={p1.isLoading} />
+          ) : (
+            <Card status={p1State} {...p1.player} />
+          )}
         </Col>
         <Col
           xs={18}
@@ -59,18 +46,18 @@ export default function Result () {
           xl={{ span: 6, offset: 6 }}
           xxl={{ span: 4, offset: 4 }}
         >
-          {
-            p2.isError || p2.isLoading
-            ? <ErrorWrapper isLoading={p2.isLoading} />
-            : <Card status={p2State} {...p2.player} />
-          }
+          {p2.isError || p2.isLoading ? (
+            <ErrorWrapper isLoading={p2.isLoading} />
+          ) : (
+            <Card status={p2State} {...p2.player} />
+          )}
         </Col>
       </Row>
-      <Row
-        justify='center'
-      >
-        <Button size="large" onClick={handleReset} type='primary'>Reset</Button>
+      <Row justify="center">
+        <Button size="large" onClick={handleReset} type="primary">
+          Reset
+        </Button>
       </Row>
     </div>
-  )
+  );
 }

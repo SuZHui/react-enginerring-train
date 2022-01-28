@@ -1,57 +1,65 @@
-import React from 'react'
-import { useRoutes } from 'react-router-dom'
-import Nav from '@/components/Nav'
-import Footer from '@/components/Footer'
+import React from "react";
+import { useRoutes } from "react-router-dom";
+import Nav from "@/components/Nav";
+import Footer from "@/components/Footer";
 
-const Popular = React.lazy(() => import(/* webpackChunkName: 'Popular' */'@/pages/Popular'))
-const Battle = React.lazy(() => import(/* webpackChunkName: 'Battle' */'@/pages/Battle'))
-const Result = React.lazy(() => import(/* webpackChunkName: 'Result' */'@/pages/Result'))
-const NoFound = React.lazy(() => import(/* webpackChunkName: 'NoFound' */'@/pages/NoFound'))
+const Popular = React.lazy(() =>
+  import(/* webpackChunkName: 'Popular' */ "@/pages/Popular")
+);
+const Battle = React.lazy(() =>
+  import(/* webpackChunkName: 'Battle' */ "@/pages/Battle")
+);
+const Result = React.lazy(() =>
+  import(/* webpackChunkName: 'Result' */ "@/pages/Result")
+);
+const NoFound = React.lazy(() =>
+  import(/* webpackChunkName: 'NoFound' */ "@/pages/NoFound")
+);
 
-export default function App () {
-  const fallbackElememt = <>...</>
+export default function App() {
+  const fallbackElememt = <>...</>;
   const routes = [
     {
-      path: '/',
+      path: "/",
       element: (
         <React.Suspense fallback={fallbackElememt}>
           <Popular />
         </React.Suspense>
-      )
+      ),
     },
     {
-      path: '/battle',
+      path: "/battle",
       element: (
         <React.Suspense fallback={fallbackElememt}>
           <Battle />
         </React.Suspense>
-      )
+      ),
     },
     {
-      path: '/result',
+      path: "/result",
       element: (
         <React.Suspense fallback={fallbackElememt}>
           <Result />
         </React.Suspense>
-      )
+      ),
     },
     {
-      path: '*',
+      path: "*",
       element: (
         <React.Suspense fallback={fallbackElememt}>
           <NoFound />
         </React.Suspense>
-      )
-    }
-  ]
+      ),
+    },
+  ];
 
-  const element = useRoutes(routes)
+  const element = useRoutes(routes);
 
   return (
     <>
       <Nav />
-      { element }
+      {element}
       <Footer />
     </>
-  )
+  );
 }

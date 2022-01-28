@@ -1,18 +1,25 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { Image, Spin } from 'antd'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import React from "react";
+import PropTypes from "prop-types";
+import { Image, Spin } from "antd";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faUserPlus,
   faUsers,
   faCode,
-  faLocationArrow
-} from '@fortawesome/free-solid-svg-icons'
+  faLocationArrow,
+} from "@fortawesome/free-solid-svg-icons";
 
 export default function Card(props) {
-  const { status, avatar_url, location, following, followers, html_url, public_repos } =
-    props
-  
+  const {
+    status,
+    avatar_url,
+    location,
+    following,
+    followers,
+    html_url,
+    public_repos,
+  } = props;
+
   return (
     <a
       href={html_url}
@@ -37,7 +44,11 @@ export default function Card(props) {
         <h4 className="f4 mt3 mb1 red">Scores: {public_repos}</h4>
         <div className="ph4 tl w-100 f5">
           <p className="mv2 flex items-center" title={location}>
-            <FontAwesomeIcon icon={faLocationArrow} color="#ffbf74" fixedWidth />
+            <FontAwesomeIcon
+              icon={faLocationArrow}
+              color="#ffbf74"
+              fixedWidth
+            />
             <span className="ml2 flex-auto-l truncate">{location}</span>
           </p>
           <p className="mv2 flex items-center">
@@ -49,17 +60,13 @@ export default function Card(props) {
             <span className="ml2">{following}</span>
           </p>
           <p className="mv2 flex items-center">
-            <FontAwesomeIcon
-              icon={faCode}
-              color="#f18d95"
-              fixedWidth
-            />
+            <FontAwesomeIcon icon={faCode} color="#f18d95" fixedWidth />
             <span className="ml2">{public_repos}</span>
           </p>
         </div>
       </div>
     </a>
-  )
+  );
 }
 
 Card.propTypes = {
@@ -71,10 +78,10 @@ Card.propTypes = {
   followers: PropTypes.number.isRequired,
   html_url: PropTypes.string.isRequired,
   public_repos: PropTypes.number.isRequired,
-}
+};
 
 Card.STATUS = {
-  WIN: 'Winner',
-  LOSE: 'Loser',
-  TIE: 'Tie'
-}
+  WIN: "Winner",
+  LOSE: "Loser",
+  TIE: "Tie",
+};

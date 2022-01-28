@@ -1,7 +1,7 @@
-import React from 'react'
-import { Result, Button } from 'antd'
+import React from "react";
+import { Result, Button } from "antd";
 
-export default function NoFound () {
+export default function NoFound() {
   return (
     <div className="no-found tc mt6">
       <Result
@@ -9,12 +9,11 @@ export default function NoFound () {
         title="404"
         subTitle="Sorry, the page you visited does not exist."
         extra={
-          <Button
-            type="primary"
-            href="/react-enginerring-train/"
-          >Back Home</Button>
+          <Button type="primary" href="/react-enginerring-train/">
+            Back Home
+          </Button>
         }
       />
     </div>
-  )
+  );
 }

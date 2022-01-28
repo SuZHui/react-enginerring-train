@@ -12,7 +12,8 @@ a:hover {
     transform: rotate(360deg);
   }
 }
-html, body {
+html,
+body {
   width: 100vw;
   height: 100vh;
   overflow: hidden;
@@ -34,9 +35,9 @@ html, body {
     margin: 0 auto;
   }
 }
-.battle, .result, .no-found {
+.battle,
+.result,
+.no-found {
   flex: 1;
   overflow-y: auto;
 }
-
-

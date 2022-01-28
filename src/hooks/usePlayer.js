@@ -1,11 +1,11 @@
-import API from '@/api'
+import API from "@/api";
 
-export default function usePlayer (name) {
-  const { data, error, isValidating, mutate } = API.getUser2(name)
+export default function usePlayer(name) {
+  const { data, error, isValidating, mutate } = API.getUser2(name);
   return {
     player: data,
     isLoading: isValidating,
     isError: !!error || (!data && !isValidating),
-    refresh: mutate
-  }
+    refresh: mutate,
+  };
 }
