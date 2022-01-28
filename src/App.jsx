@@ -1,11 +1,12 @@
 import React from 'react'
 import { useRoutes } from 'react-router-dom'
 import Nav from '@/components/Nav'
+import Footer from '@/components/Footer'
 
 const Popular = React.lazy(() => import(/* webpackChunkName: 'Popular' */'@/pages/Popular'))
 const Battle = React.lazy(() => import(/* webpackChunkName: 'Battle' */'@/pages/Battle'))
 const Result = React.lazy(() => import(/* webpackChunkName: 'Result' */'@/pages/Result'))
-const NoFound = React.lazy(() => import(/* webpackChunkName: 'NoFound' */'@/pages/NoFound'))
+const NoFound = React.lazy(() => import(/* webpackChunkName: 'NoFound' */'@/pages/NoFound'));
 
 export default function App () {
   const fallbackElememt = <>...</>
@@ -50,23 +51,7 @@ export default function App () {
     <>
       <Nav />
       { element }
-      {/* <Routes>
-        <Route path="/" element={
-          <React.Suspense fallback={<>...</>}>
-            <Popular />
-          </React.Suspense>
-        } />
-        <Route path="/battle" element={
-          <React.Suspense fallback={<>...</>}>
-            <Battle />
-          </React.Suspense>
-        } />
-        <Route path="*" element={
-          <React.Suspense fallback={<>...</>}>
-            <NoFound />
-          </React.Suspense>
-        } />
-      </Routes> */}
+      <Footer />
     </>
   )
 }

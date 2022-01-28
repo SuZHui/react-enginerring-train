@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Button, Spin } from 'antd'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import { useSearchParams } from 'react-router-dom'
-import Header from './Header'
+import Header from '@/components/Header'
 import Content from './Content'
 import usePopular from './usePopular'
 

@@ -34,7 +34,8 @@ html, body {
     margin: 0 auto;
   }
 }
-.battle {
+.battle, .result, .no-found {
+  flex: 1;
   overflow-y: auto;
 }
 

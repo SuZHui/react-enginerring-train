@@ -3,7 +3,7 @@ import { Result, Button } from 'antd'
 
 export default function NoFound () {
   return (
-    <div className="tc mt6">
+    <div className="no-found tc mt6">
       <Result
         status="404"
         title="404"

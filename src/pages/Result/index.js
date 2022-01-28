@@ -34,7 +34,7 @@ export default function Result () {
   }
   
   return (
-    <div className="pt5 overflow-y-auto">
+    <div className="result pt5 overflow-y-auto">
       <Row
         className="mt4"
         justify='center'
