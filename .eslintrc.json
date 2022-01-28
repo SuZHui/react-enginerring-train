@@ -12,8 +12,11 @@
   "ignorePatterns": ["build/*", "node_modules/*"],
   "parser": "@babel/eslint-parser",
   "extends": [
-    "plugin:react/recommended",
-    "plugin:react/jsx-runtime"
+    // "plugin:react/recommended",
+    // "plugin:react/jsx-runtime",
+    "airbnb",
+    "airbnb/hooks",
+    "prettier"
   ],
   "parserOptions": {
     "ecmaFeatures": {
