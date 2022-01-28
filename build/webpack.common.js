@@ -52,7 +52,10 @@ const getConfig = (isProd = false) => {
           test: /\.jsx?$/,
           include: [resolve('src')],
           use: {
-            loader: 'babel-loader'
+            loader: 'babel-loader',
+            options: {
+              plugins: [!isProd && require.resolve('react-refresh/babel')].filter(Boolean)
+            }
           }
         },
         {
