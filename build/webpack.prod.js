@@ -22,6 +22,29 @@ module.exports = merge(getConfig(true), {
         parallel: true,
         extractComments: false
       })
-    ]
+    ],
+    splitChunks: {
+      cacheGroups: {
+        react: {
+          test: /[\\/]node_modules[\\/](react|react-dom|prop-types|react-router-dom)[\\/]/,
+          name: 'vendor-react',
+          priority: 20,
+          chunks: 'all',
+        },
+        antd: {
+          test: /[\\/]node_modules[\\/](antd)[\\/]/,
+          name: 'vendor-antd',
+          priority: 10,
+          chunks: 'all',
+        },
+        vendors: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendors',
+          priority: 1,
+          chunks: 'all',
+          reuseExistingChunk: true,
+        }
+      }
+    }
   }
 })
