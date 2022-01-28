@@ -59,16 +59,12 @@
     "react-router-dom": "^6.2.1",
     "swr": "^1.1.2"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
   "lint-staged": {
     "src/**/*.{js,jsx,scss}": [
       "prettier --write",
       "git add"
     ],
-    "src/**/*.{js,jsx}": "eslint src/ --fix"
+    "src/**/*.{js,jsx}": "eslint src/ --fix",
+    "*.js": "eslint --cache --fix"
   }
 }
