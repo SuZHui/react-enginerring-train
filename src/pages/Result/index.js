@@ -1,30 +1,26 @@
 import React, { useMemo } from 'react'
 import { useSearchParams, useNavigate } from 'react-router-dom'
 import { Row, Col, Button } from 'antd'
-import usePlayer, { usePlayer2 } from '@/hooks/usePlayer'
+import usePlayer from '@/hooks/usePlayer'
 import Card from './Card'
 import ErrorWrapper from './ErrorWrapper'
-
 
 export default function Result () {
   const [search] = useSearchParams()
   const p1 = usePlayer(search.get('p1'))
   const p2 = usePlayer(search.get('p2'))
-  const res = usePlayer2()
-
-  res.setName(search.get('p1'))
 
   const [p1State, p2State] = useMemo(() => {
-    let _p1, _p2
     if (!p1.player || !p2.player) {
       return [null, null]
     }
     const max = Math.max(p1.player.public_repos, p2.player.public_repos)
     const arr = [p1.player.public_repos, p2.player.public_repos]
     if (arr.every(p => p === max)) {
-      _p1 = _p2 = Card.STATUS.TIE
-      return [_p1, _p2]
+      // 平局
+      return [Card.STATUS.TIE, Card.STATUS.TIE]
     } else {
+      // 胜负
       return arr.map(p => {
         return p === max
           ? Card.STATUS.WIN

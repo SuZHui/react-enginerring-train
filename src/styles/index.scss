@@ -1,0 +1,41 @@
+.anim-loading-rotate {
+  animation: loading-rotate 1.4s linear infinite;
+}
+
+a:hover {
+  color: inherit;
+}
+
+@keyframes loading-rotate {
+  to {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+html, body {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+#app {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.popular {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  .popular-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+}
+.battle {
+  overflow-y: auto;
+}
+
+

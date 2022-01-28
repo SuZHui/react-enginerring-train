@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useNavigate, createSearchParams } from 'react-router-dom'
 import { Row, Col, Button } from 'antd'
 import Instructions from './Instructions'
-import PlayerInput from './PlayerInput'
+import PlayerInput from '@/components/PlayerInput'
 
 export default function Battle () {
   const navigate = useNavigate()

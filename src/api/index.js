@@ -2,50 +2,62 @@ import Axios from 'axios'
 import { Modal } from 'antd'
 import useSWRInfinite from 'swr/infinite'
 import useSWR from 'swr'
+import { useRef } from 'react'
 
 let modal
 
 const client = Axios.create({})
-client.interceptors.response.use(res => res.data, err => {
-  if (Axios.isCancel(err)) {
-    console.log('Request canceled', err)
-  } else {
-    // 系统级错误 弹窗提示
-    if (!modal) {
-      const message = (() => {
-        let t = 'Request failed'
-        if (err.response && err.response.data) {
-          t = err.response.data.message || t
-        } else if (err.message) {
-          t = err.message
-        }
-        return t
-      })()
-      modal = Modal.error({
-        title: 'Error',
-        content: message,
-        afterClose: () => modal = null
-      })
+client.interceptors.response.use(
+  (res) => res.data,
+  (err) => {
+    if (Axios.isCancel(err)) {
+      console.log('Request canceled', err)
+    } else {
+      // 系统级错误 弹窗提示
+      if (!modal) {
+        const message = (() => {
+          let t = 'Request failed'
+          if (err.response && err.response.data) {
+            t = err.response.data.message || t
+          } else if (err.message) {
+            t = err.message
+          }
+          return t
+        })()
+        modal = Modal.error({
+          title: 'Error',
+          content: message,
+          afterClose: () => (modal = null),
+        })
+      }
     }
+    return Promise.reject(err)
   }
-  return Promise.reject(err)
-})
+)
 
 export default {
-  getList (type) {
-    const fetcher = url => client.get(url)
+  getList(type) {
+    const fetcher = (url) => client.get(url)
     type = type.toLowerCase() !== 'all' ? `+language:${type}` : ''
-    const getKey = index => {
-      return `https://api.github.com/search/repositories?q=stars:%3E1${type}&sort=stars&order=desc&type=Repositories&per_page=30&page=${index + 1}`
+    const getKey = (index) => {
+      return `https://api.github.com/search/repositories?q=stars:%3E1${type}&sort=stars&order=desc&type=Repositories&per_page=30&page=${
+        index + 1
+      }`
     }
-    return useSWRInfinite(getKey, fetcher, { shouldRetryOnError: false, revalidateFirstPage: false })
+    return useSWRInfinite(getKey, fetcher, {
+      shouldRetryOnError: false,
+      revalidateFirstPage: false,
+    })
   },
-  getUser (name) {
+  getUser(name) {
     return client.get(`https://api.github.com/users/${name}`)
   },
-  getUser2 (name) {
+  getUser2(name) {
     const key = name ? `https://api.github.com/users/${name}` : null
-    const fetcher = url => client.get(url)
-    return useSWR(key, fetcher, { shouldRetryOnError: false })
+    const fetcher = (url) => client.get(url)
+    return useSWR(key, fetcher, {
+      shouldRetryOnError: false,
+      revalidateOnFocus: false
+    })
   }
 }
