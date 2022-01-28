@@ -9,7 +9,6 @@ export default function Result () {
   const [search] = useSearchParams()
   const p1 = usePlayer(search.get('p1'))
   const p2 = usePlayer(search.get('p2'))
-
   const [p1State, p2State] = useMemo(() => {
     if (!p1.player || !p2.player) {
       return [null, null]
@@ -69,14 +68,11 @@ export default function Result () {
           }
         </Col>
       </Row>
-      {
-        (p1.player && p2.player) &&
-          <Row
-            justify='center'
-          >
-            <Button size="large" onClick={handleReset} type='primary'>Reset</Button>
-          </Row>
-      }
+      <Row
+        justify='center'
+      >
+        <Button size="large" onClick={handleReset} type='primary'>Reset</Button>
+      </Row>
     </div>
   )
 }

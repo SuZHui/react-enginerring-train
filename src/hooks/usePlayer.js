@@ -5,7 +5,7 @@ export default function usePlayer (name) {
   return {
     player: data,
     isLoading: isValidating,
-    isError: !!error,
+    isError: !!error || (!data && !isValidating),
     refresh: mutate
   }
 }

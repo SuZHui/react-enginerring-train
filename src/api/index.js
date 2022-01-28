@@ -2,7 +2,6 @@ import Axios from 'axios'
 import { Modal } from 'antd'
 import useSWRInfinite from 'swr/infinite'
 import useSWR from 'swr'
-import { useRef } from 'react'
 
 let modal
 
