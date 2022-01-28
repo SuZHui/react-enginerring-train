@@ -22,7 +22,7 @@ const getConfig = (isProd = false) => {
 
   return {
     context,
-    entry: './src/index.js',
+    entry: './src/index.jsx',
     output: {
       clean: true,
       filename: isProd ? 'js/[name].[contenthash:8].js' : 'js/bundle.js',

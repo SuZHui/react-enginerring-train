@@ -18,14 +18,12 @@ export default function Result () {
     if (arr.every(p => p === max)) {
       // 平局
       return [Card.STATUS.TIE, Card.STATUS.TIE]
-    } else {
+    } 
       // 胜负
-      return arr.map(p => {
-        return p === max
+      return arr.map(p => p === max
           ? Card.STATUS.WIN
-          : Card.STATUS.LOSE
-      })
-    }
+          : Card.STATUS.LOSE)
+    
   }, [p1, p2])
 
   const navigate = useNavigate()

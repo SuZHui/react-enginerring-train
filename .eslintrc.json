@@ -15,7 +15,7 @@
     // "plugin:react/recommended",
     // "plugin:react/jsx-runtime",
     "airbnb",
-    "airbnb/hooks",
+    // "airbnb/hooks",
     "prettier"
   ],
   "parserOptions": {
@@ -27,6 +27,16 @@
   "rules": {
     "semi": [2, "never"],
     "quotes": [2, "single"],
-    "eol-last": [2, "always"]
+    "eol-last": [2, "always"],
+    "react/jsx-props-no-spreading": 0,
+    "import/extensions": [2, {
+      "ignore": ["^@/"] // @ 是设置的路径别名
+    }],
+    "import/no-unresolved": [
+      2,
+      {
+        "ignore": ["^@/"] // @ 是设置的路径别名
+      }
+    ]
   }
 }

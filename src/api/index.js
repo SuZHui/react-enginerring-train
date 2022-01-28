@@ -10,39 +10,37 @@ client.interceptors.response.use(
   (res) => res.data,
   (err) => {
     if (Axios.isCancel(err)) {
-      console.log('Request canceled', err)
-    } else {
+      // eslint-disable-next-line no-console
+      console.info('Request canceled', err)
+    } else if (!modal) {
       // 系统级错误 弹窗提示
-      if (!modal) {
-        const message = (() => {
-          let t = 'Request failed'
-          if (err.response && err.response.data) {
-            t = err.response.data.message || t
-          } else if (err.message) {
-            t = err.message
-          }
-          return t
-        })()
-        modal = Modal.error({
-          title: 'Error',
-          content: message,
-          afterClose: () => (modal = null),
-        })
-      }
+      const message = (() => {
+        let t = 'Request failed'
+        if (err.response && err.response.data) {
+          t = err.response.data.message || t
+        } else if (err.message) {
+          t = err.message
+        }
+        return t
+      })()
+      modal = Modal.error({
+        title: 'Error',
+        content: message,
+        afterClose: () => { modal = null },
+      })
+      
     }
     return Promise.reject(err)
   }
 )
 
 export default {
-  getList(type) {
+  getList(t) {
     const fetcher = (url) => client.get(url)
-    type = type.toLowerCase() !== 'all' ? `+language:${type}` : ''
-    const getKey = (index) => {
-      return `https://api.github.com/search/repositories?q=stars:%3E1${type}&sort=stars&order=desc&type=Repositories&per_page=30&page=${
+    const type = t.toLowerCase() !== 'all' ? `+language:${t}` : ''
+    const getKey = (index) => `https://api.github.com/search/repositories?q=stars:%3E1${type}&sort=stars&order=desc&type=Repositories&per_page=30&page=${
         index + 1
       }`
-    }
     return useSWRInfinite(getKey, fetcher, {
       shouldRetryOnError: false,
       revalidateFirstPage: false,
