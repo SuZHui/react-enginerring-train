@@ -12,7 +12,7 @@ module.exports = merge(getConfig(), {
       logging: "error",
     },
     static: {
-      directory: "./docs",
+      directory: "./dist",
       publicPath: PROJECT_URL_PATH,
     },
   },

@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkreact_enginerring_train=self.webpackChunkreact_enginerring_train||[]).push([[388],{6347:(e,t,r)=>{r.r(t),r.d(t,{default:()=>c});var a=r(7294),n=r(6129),i=r(1577);function c(){return a.createElement("div",{className:"page tc mt6"},a.createElement(n.ZP,{status:"404",title:"404",subTitle:"Sorry, the page you visited does not exist.",extra:a.createElement(i.Z,{type:"primary",href:"/react-enginerring-train/"},"Back Home")}))}}}]);
-//# sourceMappingURL=NoFound.630c35d2.js.map

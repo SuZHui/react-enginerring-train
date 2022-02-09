@@ -26,5 +26,5 @@ https://pheye.github.io/react-train/#/battle
 - ~~`Result`页面错误处理（缺少头部参数的时候提示）~~
 - ~~`Popular`页面列表hook优化（useRef）~~
 - 未工程化项目移植 popular 模块 （包括页面刷新数据保留）
-- 打包产物移除，调整发布分支到gh-page
-- ~~移除style中的所有`!important`~~
+- ~~打包产物移除，调整发布分支到gh-pages~~
+- 移除style中的所有`!important`

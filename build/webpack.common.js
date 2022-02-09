@@ -29,7 +29,7 @@ const getConfig = (isProd = false) => {
       clean: true,
       filename: isProd ? "js/[name].[contenthash:8].js" : "js/bundle.js",
       chunkFilename: isProd ? "js/[name].[contenthash:8].js" : "js/[name].js",
-      path: resolve("docs"),
+      path: resolve("dist"),
       publicPath: PROJECT_URL_PATH + "/",
     },
     plugins: [
