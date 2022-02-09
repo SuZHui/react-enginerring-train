@@ -1,14 +1,31 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useEffect } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
-import { Row, Col, Button } from "antd";
+import { Row, Col, Button, Modal } from "antd";
 import usePlayer from "@/hooks/usePlayer";
 import Card from "./Card";
 import ErrorWrapper from "./ErrorWrapper";
 
 export default function Result() {
+  const navigate = useNavigate();
+  const handleReset = () => {
+    navigate("/battle");
+  };
+
   const [search] = useSearchParams();
   const p1 = usePlayer(search.get("p1"));
   const p2 = usePlayer(search.get("p2"));
+
+  useEffect(() => {
+    if (p1.isError || p2.isError) {
+      Modal.error({
+        title: "错误",
+        content: "未找到Player，将返回Battle页面。",
+        onOk: handleReset,
+        okText: "返回",
+      });
+    }
+  }, [p1.isError, p2.isError]);
+
   const [p1State, p2State] = useMemo(() => {
     if (!p1.player || !p2.player) {
       return [null, null];
@@ -22,11 +39,6 @@ export default function Result() {
     // 胜负
     return arr.map((p) => (p === max ? Card.STATUS.WIN : Card.STATUS.LOSE));
   }, [p1, p2]);
-
-  const navigate = useNavigate();
-  const handleReset = () => {
-    navigate("/battle");
-  };
 
   return (
     <div className="page pt5 overflow-y-auto">
