@@ -1,0 +1,1 @@
+{"version":3,"file":"css/Battle.af3c22c5.css","mappings":"AAEE,wEAEE,gBADA,uBACA","sources":["webpack://react-enginerring-train/./src/components/PlayerInput/style.module.scss"],"sourcesContent":["\n.playerInput {\n  :global(.ant-input) {\n    width: calc(100% - 86px);\n    max-width: 246px;\n  }\n}\n"],"names":[],"sourceRoot":""}

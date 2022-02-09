@@ -1,1 +1,0 @@
-{"version":3,"file":"css/Popular.3ca9b1aa.css","mappings":"AAAA,gDACE,aACA,sBACA,YACA","sources":["webpack://react-enginerring-train/./src/pages/Popular/style.module.scss"],"sourcesContent":[".popular {\r\n  display: flex;\r\n  flex-direction: column;\r\n  height: 100%;\r\n  overflow: hidden;\r\n}"],"names":[],"sourceRoot":""}
