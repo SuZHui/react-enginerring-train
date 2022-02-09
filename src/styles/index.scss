@@ -25,19 +25,8 @@ body {
   display: flex;
   flex-direction: column;
 }
-.popular {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  overflow: hidden;
-  .popular-wrapper {
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-}
-.battle,
-.result,
-.no-found {
+
+.page {
   flex: 1;
   overflow-y: auto;
 }

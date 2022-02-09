@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import React from "react";
 import PropTypes from "prop-types";
 import { Image, Spin } from "antd";
@@ -63,7 +64,10 @@ export default function Card(props) {
 
 Card.propTypes = {
   index: PropTypes.number.isRequired,
-  owner: PropTypes.object.isRequired,
+  owner: PropTypes.shape({
+    avatar_url: PropTypes.string.isRequired,
+    login: PropTypes.string.isRequired,
+  }).isRequired,
   open_issues_count: PropTypes.number.isRequired,
   stargazers_count: PropTypes.number.isRequired,
   forks: PropTypes.number.isRequired,

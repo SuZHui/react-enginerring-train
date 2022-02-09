@@ -21,7 +21,7 @@ const usePlayerInput = () => {
         setPlayer(res);
       })
       .catch((err) => {
-        console.error(err);
+        // console.error(err);
         setPlayer(null);
         if (listener.current.error) {
           listener.current.error(err);
@@ -36,12 +36,25 @@ const usePlayerInput = () => {
     player,
     isLoading,
     submit: fetch,
-    onError: (cb) => (listener.current.error = cb),
+    onError: (cb) => {
+      listener.current.error = cb;
+    },
     clearPlayer: () => setPlayer(null),
   };
 };
 export default function PlayerInput({ onChange }) {
   const { player, isLoading, submit, clearPlayer, onError } = usePlayerInput();
+  const formik = useFormik({
+    initialValues: {
+      name: "",
+    },
+    onSubmit: (values) => {
+      const name = values.name.toLowerCase();
+      submit(name);
+      onChange(name);
+    },
+  });
+
   const handleClear = () => {
     clearPlayer();
     formik.setValues({ name: "" });
@@ -58,17 +71,6 @@ export default function PlayerInput({ onChange }) {
   onError(() => {
     clearPlayer();
     onChange(null);
-  });
-
-  const formik = useFormik({
-    initialValues: {
-      name: "",
-    },
-    onSubmit: (values) => {
-      const name = values.name.toLowerCase();
-      submit(name);
-      onChange(name);
-    },
   });
 
   // const style = {
@@ -92,7 +94,8 @@ export default function PlayerInput({ onChange }) {
         />
         <span className="ml2 fw6 f3 blue">{player.login}</span>
       </div>
-      <div className="pointer" onClick={handleClear}>
+      {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events */}
+      <div className="pointer" onClick={handleClear} role="button" tabIndex="0">
         <FontAwesomeIcon icon={faTimesCircle} color="red" size="2x" />
       </div>
     </div>
@@ -119,6 +122,10 @@ export default function PlayerInput({ onChange }) {
     </Input.Group>
   );
 }
+
+PlayerInput.defaultProps = {
+  onChange() {},
+};
 
 PlayerInput.propTypes = {
   onChange: PropTypes.func,

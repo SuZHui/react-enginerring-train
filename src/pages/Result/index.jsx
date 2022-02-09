@@ -29,7 +29,7 @@ export default function Result() {
   };
 
   return (
-    <div className="result pt5 overflow-y-auto">
+    <div className="page pt5 overflow-y-auto">
       <Row className="mt4" justify="center">
         <Col xs={18} sm={10} md={8} lg={6} xl={6} xxl={4}>
           {p1.isError || p1.isLoading ? (

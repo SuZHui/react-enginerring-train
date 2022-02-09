@@ -20,8 +20,8 @@ https://pheye.github.io/react-train/#/battle
 - ~~Battle 页面 测试（React 和 vue 对比, microsoft 与 facebook）~~
 
 ## BUG FIX 2022.2.9
-- 所有页面css改为`cssModule`
-- lint-staged加入`eslint`提示
+- ~~所有页面css改为`cssModule`~~
+- ~~lint-staged加入`eslint`提示~~
 - `Battle`页面 input 加入回车事件
 - `Result`页面错误处理（缺少头部参数的时候提示）
 - `Popular`页面列表hook优化（useRef）

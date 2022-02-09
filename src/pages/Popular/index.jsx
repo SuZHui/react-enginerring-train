@@ -5,14 +5,29 @@ import { useSearchParams } from "react-router-dom";
 import Header from "@/components/Header";
 import Content from "./Content";
 import usePopular from "./usePopular";
+import style from "./style.module.scss";
 
 export default function Popular() {
   const [searchParams] = useSearchParams();
   const type = searchParams.get("type") || "All";
   const { list, isLoading, isError, loadMore, reload } = usePopular(type);
 
+  const errorLoader = () => (
+    <Button type="primary" onClick={reload}>
+      重新加载
+    </Button>
+  );
+  const loader = () => {
+    if (isError) {
+      return errorLoader();
+    }
+    if (isLoading) {
+      return <Spin size="large" />;
+    }
+    return null;
+  };
   return (
-    <div className="popular pt5 flex flex-column">
+    <div className={`${style.popular} pt5 flex flex-column`}>
       <Header type={type} />
       <div id="scrollable" className="flex-auto overflow-y-auto">
         <InfiniteScroll
@@ -21,7 +36,9 @@ export default function Popular() {
           next={loadMore}
           loader={
             <div className="tc mv4">
-              {isLoading ? (
+              {loader()}
+              {/* {
+              isLoading ? (
                 isError ? (
                   <Button type="primary" onClick={reload}>
                     重新加载
@@ -33,7 +50,8 @@ export default function Popular() {
                 <Button type="primary" onClick={reload}>
                   重新加载
                 </Button>
-              ) : null}
+              ) : null
+              } */}
             </div>
           }
           endMessage={<div className="tc mv4">已经到最后了！</div>}

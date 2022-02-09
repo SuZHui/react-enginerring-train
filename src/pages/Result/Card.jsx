@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import React from "react";
 import PropTypes from "prop-types";
 import { Image, Spin } from "antd";
@@ -68,6 +69,11 @@ export default function Card(props) {
     </a>
   );
 }
+
+Card.defaultProps = {
+  status: null,
+  location: null,
+};
 
 Card.propTypes = {
   // 胜负状态

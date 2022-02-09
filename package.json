@@ -6,7 +6,7 @@
   "scripts": {
     "prepare": "husky install",
     "dev": "webpack serve --config build/webpack.dev.js",
-    "lint": "eslint src/ --fix",
+    "lint": "eslint src/**/*.{js,jsx} --fix",
     "deploy": "npm run lint && webpack build --config build/webpack.prod.js"
   },
   "repository": {

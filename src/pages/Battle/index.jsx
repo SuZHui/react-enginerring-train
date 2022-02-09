@@ -25,7 +25,7 @@ export default function Battle() {
   };
 
   return (
-    <div className="battle pt6">
+    <div className="page pt6">
       <Instructions />
       <div className="pb4">
         <h2 className="tc mb3">Players</h2>

@@ -13,8 +13,10 @@ const getConfig = (isProd = false) => {
     {
       loader: "css-loader",
       options: {
+        sourceMap: true,
         modules: {
           auto: true,
+          localIdentName: "[path][name]__[local]--[hash:base64:5]",
         },
       },
     },

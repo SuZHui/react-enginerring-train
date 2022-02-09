@@ -10,7 +10,9 @@ export default function Header({ type }) {
       <div className="w-100 tc mb4">
         {LANGUAGES.map((item) => {
           let className = "pointer dim f5 mh2 fw6";
-          type === item && (className += " red");
+          if (type === item) {
+            className += " red";
+          }
           return (
             <Link className={className} key={item} to={`/?type=${item}`}>
               {item}
