@@ -108,6 +108,7 @@ export default function PlayerInput({ onChange }) {
         value={formik.values.name}
         disabled={isLoading}
         onChange={formik.handleChange}
+        onPressEnter={formik.handleSubmit}
         placeholder="github username"
       />
       <Button
