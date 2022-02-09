@@ -1,0 +1,2 @@
+.anim-loading-rotate{animation:loading-rotate 1.4s linear infinite}a:hover{color:inherit}@keyframes loading-rotate{to{-webkit-transform:rotate(1turn);transform:rotate(1turn)}}body,html{height:100vh;overflow:hidden;width:100vw}#app{height:100vh;width:100%}#app,.popular{display:flex;flex-direction:column}.popular{height:100%;overflow:hidden}.popular .popular-wrapper{margin:0 auto;max-width:1200px}.battle,.no-found,.result{flex:1;overflow-y:auto}
+/*# sourceMappingURL=main.580efbc6.css.map*/
