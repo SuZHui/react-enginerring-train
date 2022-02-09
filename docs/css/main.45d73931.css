@@ -1,0 +1,2 @@
+.anim-loading-rotate{animation:loading-rotate 1.4s linear infinite}a:hover{color:inherit}@keyframes loading-rotate{to{-webkit-transform:rotate(1turn);transform:rotate(1turn)}}body,html{height:100vh;overflow:hidden;width:100vw}#app{display:flex;flex-direction:column;height:100vh;width:100%}.page{flex:1;overflow-y:auto}
+/*# sourceMappingURL=main.45d73931.css.map*/

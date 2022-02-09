@@ -1,0 +1,1 @@
+{"version":3,"file":"css/Battle.260e6951.css","mappings":"AAAA,uDAEE,gBADA,iCACA","sources":["webpack://react-enginerring-train/./src/components/PlayerInput/style.module.scss"],"sourcesContent":[".input {\n  width: calc(100% - 86px) !important;\n  max-width: 246px;\n}\n"],"names":[],"sourceRoot":""}
