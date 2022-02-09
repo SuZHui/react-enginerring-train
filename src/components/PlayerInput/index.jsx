@@ -100,10 +100,9 @@ export default function PlayerInput({ onChange }) {
       </div>
     </div>
   ) : (
-    <Input.Group compact size="large">
+    <Input.Group compact size="large" className={styles.playerInput}>
       <Input
         name="name"
-        className={styles.input}
         maxLength={30}
         value={formik.values.name}
         disabled={isLoading}

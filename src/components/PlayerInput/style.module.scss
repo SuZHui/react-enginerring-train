@@ -1,4 +1,7 @@
-.input {
-  width: calc(100% - 86px) !important;
-  max-width: 246px;
+
+.playerInput {
+  :global(.ant-input) {
+    width: calc(100% - 86px);
+    max-width: 246px;
+  }
 }
