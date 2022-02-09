@@ -43,10 +43,21 @@ export default {
       `https://api.github.com/search/repositories?q=stars:%3E1${type}&sort=stars&order=desc&type=Repositories&per_page=30&page=${
         index + 1
       }`;
-    return useSWRInfinite(getKey, fetcher, {
+    const { data, mutate, ...others } = useSWRInfinite(getKey, fetcher, {
       shouldRetryOnError: false,
       revalidateFirstPage: false,
     });
+    return {
+      ...others,
+      data: Array.isArray(data)
+        ? data.reduce((a, c = {}) => {
+            const { items = [] } = c;
+            a.push(...items);
+            return a;
+          }, [])
+        : [],
+      reload: () => mutate(data),
+    };
   },
   getUser(name) {
     return client.get(`https://api.github.com/users/${name}`);

@@ -11,6 +11,7 @@ export default function Popular() {
   const [searchParams] = useSearchParams();
   const type = searchParams.get("type") || "All";
   const { list, isLoading, isError, loadMore, reload } = usePopular(type);
+  console.log(list);
 
   const errorLoader = () => (
     <Button type="primary" onClick={reload}>
